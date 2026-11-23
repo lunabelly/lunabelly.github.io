@@ -1,0 +1,27 @@
+body{background:var(--bg)}
+body::before{content:'';position:fixed;inset:-20%;z-index:-2;pointer-events:none;background:radial-gradient(40% 35% at 15% 20%,rgba(214,176,98,.28),transparent 70%),radial-gradient(35% 40% at 85% 30%,rgba(214,150,150,.22),transparent 70%),radial-gradient(45% 40% at 55% 85%,rgba(176,138,62,.2),transparent 70%);animation:glow 28s ease-in-out infinite alternate}
+body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .3 0 0 0 0 .2 0 0 0 .12 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+@keyframes glow{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(3%,-2%,0) scale(1.08)}100%{transform:translate3d(-3%,3%,0) scale(1.03)}}
+.hero{position:relative;overflow:hidden;background:transparent}
+.hero::before{content:'';position:absolute;right:-6%;top:-18%;width:min(640px,70vw);aspect-ratio:1;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 62% 38%,transparent 56%,rgba(214,176,98,.34) 57%,rgba(214,176,98,.14) 68%,transparent 69%);box-shadow:inset -28px 18px 60px -30px rgba(176,138,62,.55);animation:moon 14s ease-in-out infinite alternate}
+.hero::after{content:'';position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(1.5px 1.5px at 12% 22%,rgba(176,138,62,.7),transparent),radial-gradient(1px 1px at 28% 68%,rgba(176,138,62,.55),transparent),radial-gradient(1.5px 1.5px at 46% 14%,rgba(176,138,62,.6),transparent),radial-gradient(1px 1px at 63% 78%,rgba(176,138,62,.5),transparent),radial-gradient(1.5px 1.5px at 79% 12%,rgba(176,138,62,.6),transparent),radial-gradient(1px 1px at 91% 58%,rgba(176,138,62,.5),transparent),radial-gradient(1px 1px at 6% 84%,rgba(176,138,62,.5),transparent);animation:twinkle 5s ease-in-out infinite alternate}
+.hero-in{position:relative;z-index:1}
+@keyframes moon{from{transform:translateY(0) rotate(-4deg)}to{transform:translateY(16px) rotate(3deg)}}
+@keyframes twinkle{from{opacity:.45}to{opacity:1}}
+h1 em{background:linear-gradient(100deg,var(--accent) 35%,#c79a3e 50%,var(--accent) 65%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:shimmer 6s ease-in-out infinite}
+@keyframes shimmer{0%,100%{background-position:100% 0}50%{background-position:0 0}}
+.top{background:rgba(250,245,236,.78)}
+.sec>.eyebrow::before{content:'';display:inline-block;width:28px;height:1px;background:var(--gold);vertical-align:middle;margin-right:12px}
+#shop{position:relative}
+#shop::before{content:'';position:absolute;left:50%;top:0;width:min(1100px,92%);height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+#care{background:linear-gradient(180deg,transparent,rgba(239,228,204,.55) 30%,rgba(239,228,204,.55) 70%,transparent);max-width:none;padding-left:0;padding-right:0}
+#care>*{max-width:1140px;margin-left:auto;margin-right:auto;padding-left:20px;padding-right:20px}
+.story{position:relative;overflow:hidden;background:radial-gradient(60% 120% at 50% 0%,#8a2a3b,var(--accent) 70%)}
+.story::before{content:'';position:absolute;left:50%;top:50%;width:520px;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(217,181,106,.25);box-shadow:0 0 0 60px rgba(217,181,106,.05),0 0 0 120px rgba(217,181,106,.03);pointer-events:none;animation:ring 12s ease-in-out infinite alternate}
+@keyframes ring{from{transform:translate(-50%,-50%) scale(.94)}to{transform:translate(-50%,-50%) scale(1.06)}}
+.story .wrap{position:relative;z-index:1}
+.news{background:linear-gradient(180deg,rgba(239,228,204,.7),var(--gold-soft))}
+.card{background:rgba(255,253,248,.55)}
+.card-body{padding:14px 12px 12px}
+.hero-art{box-shadow:0 30px 70px -30px rgba(110,31,44,.55),0 0 0 8px rgba(255,253,248,.5),0 0 0 9px rgba(176,138,62,.45)}
+@media(prefers-reduced-motion:reduce){body::before,.hero::before,.hero::after,.story::before,h1 em{animation:none!important}}

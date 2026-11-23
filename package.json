@@ -1,0 +1,12 @@
+{
+  "name": "luna-belly",
+  "private": true,
+  "description": "Luna Belly shop. site/ is the website; scripts/build.mjs makes the GitHub Pages version.",
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "sharp": "0.33.5"
+  }
+}

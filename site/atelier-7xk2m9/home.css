@@ -1,0 +1,32 @@
+/* Studio home: icon tiles instead of the row of tabs. The tab buttons stay in the page
+   (hidden) because studio.js and journal.js still drive the sections through them. */
+.adm .tabs{display:none}
+.adm .top .row{justify-content:flex-start}
+.adm .top .logo{background:none;border:0;padding:0;color:inherit;cursor:pointer;white-space:nowrap}
+.adm .top .logo:hover{color:var(--accent)}
+.adm .top [data-action='signout']{margin-left:auto;white-space:nowrap}
+.where{display:flex;align-items:center;gap:8px;min-width:0}
+.where[hidden]{display:none}
+.homebtn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border:0;background:transparent;color:var(--ink);font:inherit;font-size:0;cursor:pointer;transition:color .2s}
+.homebtn:hover{color:var(--accent)}
+.homebtn svg{width:22px;height:22px}
+.where-name{font-family:var(--serif);font-size:22px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shome{position:relative}
+.shome-head{position:relative;text-align:center;padding:8px 0 44px}
+.shome-head::before{content:'';position:absolute;left:50%;top:-70px;width:min(300px,62vw);aspect-ratio:1;margin-left:calc(min(300px,62vw) / -2);border-radius:50%;pointer-events:none;background:radial-gradient(circle at 62% 38%,transparent 56%,rgba(214,176,98,.34) 57%,rgba(214,176,98,.14) 68%,transparent 69%);box-shadow:inset -28px 18px 60px -30px rgba(176,138,62,.55);animation:moon 14s ease-in-out infinite alternate}
+.shome-head>*{position:relative}
+.shome-head h1{font-family:var(--serif);font-weight:500;font-size:clamp(34px,5vw,52px);line-height:1.1;margin:10px 0 10px}
+.shome-head p{margin:0;color:var(--muted)}
+.shome-head .eyebrow{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.tiles{position:relative;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
+.tile{display:grid;justify-items:start;align-content:start;gap:8px;padding:26px 22px 24px;text-align:left;font:inherit;color:var(--ink);cursor:pointer;background:rgba(255,253,248,.78);border:1px solid var(--line);transition:transform .25s,border-color .25s,box-shadow .25s}
+.tile:hover,.tile:focus-visible{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 18px 40px -26px rgba(110,31,44,.5)}
+.tile:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tic{display:grid;place-items:center;width:54px;height:54px;border-radius:50%;border:1px solid var(--gold);color:var(--accent);background:var(--gold-soft);margin-bottom:8px;transition:background .25s,color .25s}
+.tile:hover .tic{background:var(--accent);color:var(--accent-ink)}
+.tic svg{width:26px;height:26px}
+.tname{font-family:var(--serif);font-size:24px;font-weight:500;line-height:1.15}
+.tdesc{font-size:14px;color:var(--muted);line-height:1.45}
+@media(max-width:760px){.adm .top .row{gap:12px}.adm .top .logo{font-size:22px}.where-name{display:none}.tiles{grid-template-columns:1fr 1fr;gap:12px}.tile{padding:18px 14px}.tname{font-size:20px}.tdesc{font-size:13px}.tic{width:46px;height:46px}}
+@media(max-width:380px){.tiles{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.shome-head::before{animation:none}.tile{transition:none}.tile:hover{transform:none}}

@@ -1,0 +1,58 @@
+/* Studio growth.js: newsletter, profit and stock, dispatch */
+.nl-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start;margin-bottom:14px}
+@media (max-width:900px){.nl-wrap{grid-template-columns:1fr}}
+.nl-form label{display:block;margin-bottom:12px}
+.nl-form textarea{width:100%;border-radius:12px}
+.nl-pick{border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin:0 0 12px}
+.nl-pick legend{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:0 6px}
+.nl-pick>div{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:4px 12px;max-height:190px;overflow:auto}
+.nl-p{display:flex !important;align-items:center;gap:8px;margin:0 !important;text-transform:none;letter-spacing:0;font-size:14px}
+.nl-p input{width:16px;height:16px;flex:none}
+.nl-actions{display:flex;gap:8px;flex-wrap:wrap}
+.nl-ptitle{margin:0 0 8px}
+.nl-prev{background:#f6efe6;border-radius:18px;padding:18px 12px}
+.nl-card{background:#fffdf8;border-radius:18px;padding:22px 24px;max-width:520px;margin:0 auto;color:#2a1a16}
+.nl-logo{text-align:center;font:28px var(--serif);color:#6e1f2c;margin:0 0 12px}
+.nl-card h1{font:400 24px/1.3 var(--serif);margin:0 0 14px}
+.nl-card p{font:16px/1.6 Georgia,serif;margin:0 0 14px}
+.nl-card a{color:#6e1f2c}
+.nl-prods{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:6px 0 12px}
+.nl-prods img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;display:block}
+.nl-prods p{margin:8px 0 0;font-size:15px}
+.nl-prods small{color:#6e1f2c}
+.nl-btn{text-align:center}
+.nl-btn span{display:inline-block;background:#6e1f2c;color:#fff;padding:11px 24px;border-radius:999px;font:14px var(--sans)}
+.nl-foot{max-width:520px;margin:12px auto 0;font-size:12px;color:#8a7a72;text-align:center}
+.muted{color:var(--muted)}
+.pf-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.pf-head>div:first-child{flex:1;min-width:260px}
+.pf-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pf-tools label{display:flex;align-items:center;gap:8px;margin:0;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.pf-tools select{width:auto;padding:8px 12px;font-size:14px;text-transform:none;letter-spacing:0}
+.pf-tbl td{vertical-align:middle}
+.pf-in{width:84px;padding:7px 9px;font-size:14px;border-radius:10px;margin:0}
+.pf-in.wide{width:170px;display:block}
+.pf-in.wide+.pf-in.wide{margin-top:5px;font-size:12.5px}
+.pf-re{background:#fdf6ec}
+.pf-saved td{background:#eef3ea;transition:background .3s}
+.pf-bad .pf-in{border-color:#c0392b}
+.dp-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 12px}
+.dp-actions .crm-check{margin-right:6px}
+#printArea{display:none}
+@media print{
+  body.printing-slips>*:not(#printArea){display:none !important}
+  body.printing-slips{background:#fff !important}
+  body.printing-slips #printArea{display:block}
+  .slip{page-break-after:always;break-after:page;font:13pt/1.45 Georgia,serif;color:#000;padding:10mm 4mm}
+  .slip header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid #000;padding-bottom:4mm;margin-bottom:6mm;text-align:right}
+  .slip-logo{font:24pt Georgia,serif;text-align:left}
+  .slip-cols{display:flex;gap:10mm}
+  .slip-cols>div{flex:1}
+  .slip-l{font:9pt Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;margin:0 0 2mm}
+  .slip table{width:100%;border-collapse:collapse}
+  .slip td{padding:1mm 0;border-bottom:1px dotted #999}
+  .slip td+td{text-align:right;white-space:nowrap;padding-left:4mm}
+  .slip-msg{margin:8mm 0;padding:5mm;border:1px dashed #000;border-radius:3mm}
+  .slip-gift{font-style:italic}
+  .slip footer{margin-top:10mm;padding-top:3mm;border-top:1px solid #000;font:9pt Arial,sans-serif}
+}

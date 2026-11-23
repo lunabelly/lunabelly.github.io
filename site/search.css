@@ -1,0 +1,15 @@
+/* Shop search (search.js) */
+.ssearch{position:relative;display:flex;align-items:center;max-width:520px;margin:22px 0 -8px}
+.ssearch svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round}
+.ssearch>svg{position:absolute;left:16px;color:var(--muted);pointer-events:none}
+.ssearch input{width:100%;padding:13px 44px 13px 44px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font:inherit;font-size:15px;color:var(--ink);-webkit-appearance:none;appearance:none}
+.ssearch input::-webkit-search-cancel-button{display:none}
+.ssearch input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.ssearch-x{position:absolute;right:6px;width:34px;height:34px;border:0;border-radius:50%;background:transparent;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.ssearch-x:hover{background:var(--gold-soft);color:var(--accent)}
+.ssearch-x[hidden]{display:none}
+.ssearch-count{margin:0 0 16px;font-size:14px;color:var(--muted)}
+.ssearch-count:empty{display:none}
+.search-btn{background:none;border:0;padding:0;color:inherit;cursor:pointer}
+.search-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
+@media (max-width:760px){.ssearch{max-width:none;margin-top:16px}}

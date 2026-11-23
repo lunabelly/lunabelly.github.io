@@ -1,0 +1,33 @@
+/* Softer shapes: gentle rounded corners everywhere, loaded last on every page.
+   Only corners change; colours, spacing and layout stay exactly as they were. */
+:root{--r-xs:8px;--r-sm:12px;--r:16px;--r-lg:22px;--r-pill:999px}
+
+/* Buttons, chips and small controls */
+.btn,.zoom-btn,.chat-fab,.totop,.qty button:not(.link),#toast,.badge,.hm-badge,.labels li,.tag,.lu-cb .btn{border-radius:var(--r-pill)}
+.pp-buy .heart{border-radius:50%}
+
+/* Form fields */
+input:not([type=checkbox]):not([type=radio]):not([type=range]),textarea,select,#savedAddr select{border-radius:var(--r-sm)}
+
+/* Product cards and media */
+.card-media,.card-media-wrap{border-radius:var(--r);overflow:hidden}
+.pp-media,.pd-media{border-radius:var(--r-lg)}
+.thumb,.line-media{border-radius:var(--r-xs);overflow:hidden}
+.hero-art{border-radius:160px 160px var(--r-lg) var(--r-lg)}
+
+/* Panels, boxes and pop-ups */
+dialog,#chat,.login,#shipDlg{border-radius:var(--r-lg);overflow:hidden}
+#cart{border-radius:var(--r-lg) 0 0 var(--r-lg)}
+#thread,.thanks-box,.giftcard,.trackbox,.coll,.legal .box,.warnbox,.pick,.postcard a,.authsent,.paybox,.newsdone{border-radius:var(--r)}
+.postcard a{overflow:hidden}
+
+/* Studio */
+.tile,.kpi,.lst,.hsec{border-radius:var(--r)}
+.conv{border-radius:var(--r-sm)}
+.prod .thumb,.newp input{border-radius:var(--r-sm)}
+
+/* Luna panel */
+.lu-card,.lu-setup,.lu-tbl,.lu-chip,.lu-vb,.lu-form textarea{border-radius:var(--r-sm)}
+.lu-cphrase input,.lu-body pre{border-radius:var(--r-xs)}
+.lu-panel{border-radius:var(--r-lg) 0 0 var(--r-lg)}
+@media (max-width:600px){.lu-panel,#cart{border-radius:0}}

@@ -1,0 +1,8 @@
+/* Handmade badge, saved-address picker and payment box (see shop-plus.js). */
+.hm-badge{position:absolute;left:12px;bottom:12px;z-index:2;display:inline-flex;align-items:center;gap:6px;padding:5px 10px 5px 8px;background:rgba(255,253,248,.92);color:var(--accent);border:1px solid var(--gold);font-size:11px;letter-spacing:.14em;text-transform:uppercase;pointer-events:none;box-shadow:0 6px 18px -10px rgba(110,31,44,.45)}
+.hm-badge svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.6}
+.pp-media .hm-badge{left:16px;bottom:16px;font-size:12px;padding:6px 12px 6px 10px}
+#savedAddr select{width:100%}
+.paybox{margin:18px 0;padding:16px 18px;border:1px solid var(--gold);background:var(--gold-soft)}
+.paybox p{margin:0 0 12px}
+.paybox .note{margin:10px 0 0}

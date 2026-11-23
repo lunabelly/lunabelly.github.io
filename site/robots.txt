@@ -1,0 +1,33 @@
+# Luna Belly
+# Search engines and AI search tools that find and link to pages are named
+# below so the intent is clear. They may read every public page.
+# AI training crawlers are not listed separately: for now they follow the
+# general rule at the bottom, as before. That choice belongs to the shop owner.
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# ChatGPT search
+User-agent: OAI-SearchBot
+Allow: /
+
+# ChatGPT fetching a page a user asked about
+User-agent: ChatGPT-User
+Allow: /
+
+# Perplexity search
+User-agent: PerplexityBot
+Allow: /
+
+# Perplexity fetching a page a user asked about
+User-agent: Perplexity-User
+Allow: /
+
+# Everyone else, unchanged
+User-agent: *
+Allow: /
+
+Sitemap: https://luna-belly.vercel.app/sitemap.xml

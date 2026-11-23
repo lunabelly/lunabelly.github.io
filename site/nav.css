@@ -1,0 +1,54 @@
+/* Right-side slide-out menu.
+   Reuses the existing #nav element and the hamburger toggle already in app.js;
+   this file only changes how #nav is presented. The panel sits outside <header>,
+   because .top is a sticky z-index:20 stacking context and would otherwise trap the
+   panel underneath the overlay. Selectors use #nav.sidenav so they outrank the plain
+   #nav rules in styles.css and shop.css, including the ones inside media queries. */
+
+/* the hamburger is now shown at every width, not only on mobile */
+.top .tools .menu-btn{display:inline-flex;align-items:center;justify-content:center;
+  width:34px;height:34px;padding:0;color:var(--ink)}
+.top .tools .menu-btn svg{width:20px;height:20px}
+.top .tools .menu-btn:hover{color:var(--accent)}
+
+/* the panel itself */
+#nav.sidenav{
+  position:fixed;top:0;right:0;bottom:0;left:auto;
+  width:20vw;min-width:270px;max-width:360px;
+  display:flex;flex-direction:column;gap:0;
+  background:var(--surface);
+  border-left:1px solid var(--line);border-bottom:0;
+  box-shadow:-20px 0 60px -34px rgba(42,26,22,.55);
+  transform:translateX(100%);visibility:hidden;
+  transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s linear .32s;
+  z-index:33;overflow-y:auto;padding:0;
+}
+#nav.sidenav.open{transform:none;visibility:visible;
+  transition:transform .32s cubic-bezier(.4,0,.2,1),visibility 0s}
+
+.navtop{display:flex;align-items:center;justify-content:space-between;
+  padding:22px 24px 16px;border-bottom:1px solid var(--line)}
+.navtitle{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.navx{font-size:26px;line-height:1;color:var(--ink);padding:0 2px}
+.navx:hover{color:var(--accent)}
+
+#nav.sidenav a{display:block;padding:17px 24px;border-top:1px solid var(--line);
+  text-decoration:none;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+#nav.sidenav a:first-of-type{border-top:0}
+#nav.sidenav a:hover{color:var(--accent);background:var(--gold-soft)}
+/* the sliding underline from motion.css does not suit a vertical list */
+#nav.sidenav a::after{display:none}
+
+/* subtle overlay; the site stays visible behind it */
+.navscrim{position:fixed;inset:0;z-index:32;background:rgba(42,26,22,.3);
+  opacity:0;pointer-events:none;transition:opacity .32s}
+.navscrim.on{opacity:1;pointer-events:auto}
+body.navlocked{overflow:hidden}
+
+@media(max-width:760px){
+  #nav.sidenav{top:0;width:78vw;min-width:0;max-width:330px}
+}
+@media(prefers-reduced-motion:reduce){
+  #nav.sidenav,#nav.sidenav.open{transition:none}
+  .navscrim{transition:none}
+}

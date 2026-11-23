@@ -1,0 +1,38 @@
+/* growth.js: currencies, shared lists, worn by you, refer a friend */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.bar{position:relative}
+.fx-pick{position:absolute;right:12px;top:50%;transform:translateY(-50%);margin:0}
+.fx-pick select{width:auto;padding:2px 22px 2px 8px;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:transparent;color:inherit;font:inherit;font-size:11.5px;letter-spacing:.04em;cursor:pointer}
+.fx-pick option{color:#2a1a16}
+@media (max-width:640px){.bar{padding-right:84px}.fx-pick{right:6px}}
+.fx{display:block;font-size:12.5px;color:var(--muted);letter-spacing:.02em;margin-top:2px}
+.sum .fx,#sumTotal+.fx,#thanksTotal+.fx{display:inline;margin-left:8px}
+.fx-note{margin-top:-4px}
+.share-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:6px 0 26px;padding:16px 20px;border:1px solid var(--gold);border-radius:18px;background:var(--bg)}
+.share-bar p{margin:0;max-width:560px;color:var(--muted)}
+dialog.share-dlg{width:min(560px,calc(100% - 24px));padding:30px 28px 24px;border:1px solid var(--line);border-radius:22px;background:var(--surface);color:var(--ink)}
+dialog.share-dlg::backdrop{background:rgba(42,26,22,.45)}
+.share-dlg .x{position:absolute;top:10px;right:12px}
+.share-link{display:flex;gap:8px;margin:10px 0 14px}
+.share-link input{flex:1;min-width:0}
+.btn.wa{background:#1f7a4d;border-color:#1f7a4d;color:#fff}
+.btn.wa:hover{background:#18633e;border-color:#18633e}
+.share-when{margin:-6px 0 6px;color:var(--accent);font-size:15px}
+.share-note{color:var(--muted);max-width:640px}
+.share-grid{margin-top:22px}
+.share-item{display:flex;flex-direction:column;gap:8px}
+.share-item.got .card{opacity:.55}
+.share-mark{width:100%}
+.share-got{margin:0;text-align:center;color:#3f6537;font-size:14px}
+.worn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-top:20px}
+.worn-tile{position:relative;display:block;aspect-ratio:4/5;overflow:hidden;border-radius:18px;background:var(--gold-soft)}
+.worn-tile img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.worn-tile:hover img{transform:scale(1.04)}
+.worn-tile span{position:absolute;left:8px;right:8px;bottom:8px;padding:6px 10px;border-radius:999px;background:rgba(255,253,248,.92);color:var(--ink);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.worn-cta{margin-top:16px;color:var(--muted);font-size:14px}
+.refer{margin:22px 0;padding:20px 22px;border:1px solid var(--gold);border-radius:18px;background:var(--bg);text-align:left}
+.refer h3{margin:4px 0 8px}
+.refer-code{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0 4px}
+.refer-code span{padding:9px 16px;border:1px dashed var(--accent);border-radius:12px;font:500 18px var(--sans);letter-spacing:.12em;color:var(--accent);background:var(--surface)}
+.refer .note{margin:8px 0 0}
+.unsub{text-align:center;min-height:50vh}

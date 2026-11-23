@@ -1,0 +1,52 @@
+/* Night mode: deep burgundy-brown with gold. Turned on by theme.js (data-theme on <html>). */
+:root[data-theme='dark']{
+  color-scheme:dark;
+  --bg:#170d0c;--surface:#231614;--ink:#f2e6d4;--muted:#bba796;--gold:#d8b468;--gold-soft:#2e2019;
+  --accent:#7d2636;--accent-ink:#fbf3e4;--line:#3e2c25;--accent-text:#eaa7b2;--ok-text:#9dd0a6;--err-text:#f29a90
+}
+:root[data-theme='dark'] body{background:var(--bg)}
+
+/* Glass header and floating panels */
+:root[data-theme='dark'] .top{background:rgba(23,13,12,.86)}
+:root[data-theme='dark'] body::before{opacity:.55}
+:root[data-theme='dark'] body::after{opacity:.12;mix-blend-mode:screen}
+:root[data-theme='dark'] #care{background:linear-gradient(180deg,transparent,rgba(46,32,25,.6) 30%,rgba(46,32,25,.6) 70%,transparent)}
+:root[data-theme='dark'] .news{background:linear-gradient(180deg,#24180f,var(--gold-soft))}
+:root[data-theme='dark'] .card,:root[data-theme='dark'] .coll,:root[data-theme='dark'] .postcard a{background:rgba(35,22,20,.7)}
+:root[data-theme='dark'] .hero-art{box-shadow:0 30px 70px -30px rgba(0,0,0,.7),0 0 0 8px rgba(35,22,20,.6),0 0 0 9px rgba(216,180,104,.4)}
+:root[data-theme='dark'] .heart,:root[data-theme='dark'] .zoom-btn,:root[data-theme='dark'] .hm-badge,:root[data-theme='dark'] .worn-tile span{background:rgba(35,22,20,.9);color:var(--ink)}
+:root[data-theme='dark'] .heart.on,:root[data-theme='dark'] .heart:hover{color:var(--accent-text)}
+:root[data-theme='dark'] .sk{background:linear-gradient(90deg,var(--gold-soft) 25%,#3d2a21 50%,var(--gold-soft) 75%);background-size:300% 100%}
+
+/* Burgundy text would be too dark on a dark page: use a soft rose instead */
+:root[data-theme='dark'] h1 em,:root[data-theme='dark'] #nav a:hover,:root[data-theme='dark'] .sidenav a:hover,
+:root[data-theme='dark'] .mainnav a:hover,:root[data-theme='dark'] .postmore,:root[data-theme='dark'] .hm-badge,:root[data-theme='dark'] .ctl-price small,
+:root[data-theme='dark'] .gf-chip,:root[data-theme='dark'] .gf-opt:hover,:root[data-theme='dark'] .vid-btn:hover,:root[data-theme='dark'] .vid-btn[aria-pressed='true'],
+:root[data-theme='dark'] .lh-chip:hover,:root[data-theme='dark'] .lh-resolve button:hover,:root[data-theme='dark'] .ssearch-x:hover,
+:root[data-theme='dark'] .share-when,:root[data-theme='dark'] .refer-code span,:root[data-theme='dark'] #accountPage .tag.cancelled,
+:root[data-theme='dark'] .icon-btn:hover,:root[data-theme='dark'] .top .tools .menu-btn:hover{color:var(--accent-text)}
+:root[data-theme='dark'] .refer-code span{border-color:var(--accent-text)}
+:root[data-theme='dark'] .foot .logo{color:var(--ink)}
+
+/* Status colours */
+:root[data-theme='dark'] .err{color:var(--err-text)}
+:root[data-theme='dark'] .avail.yes,:root[data-theme='dark'] .sum.disc,:root[data-theme='dark'] li.disc,:root[data-theme='dark'] .share-got{color:var(--ok-text)}
+:root[data-theme='dark'] #accountPage .tag.delivered,:root[data-theme='dark'] #accountPage .tag.confirmed{border-color:var(--ok-text);color:var(--ok-text)}
+:root[data-theme='dark'] .verified{background:#1f2e1f;color:var(--ok-text)}
+:root[data-theme='dark'] .warnbox{background:#2b2213;border-color:#8a7330}
+:root[data-theme='dark'] .tag.approved{background:#1f2e1f;color:var(--ok-text)}
+:root[data-theme='dark'] .tag.rejected{background:#3a1d1d;color:var(--err-text)}
+
+/* Fields and pop-ups */
+:root[data-theme='dark'] input,:root[data-theme='dark'] textarea,:root[data-theme='dark'] select{color:var(--ink);background:var(--surface)}
+:root[data-theme='dark'] input::placeholder,:root[data-theme='dark'] textarea::placeholder{color:#8f7d70}
+:root[data-theme='dark'] .fx-pick select{background:transparent;color:inherit}
+:root[data-theme='dark'] option{background:var(--surface);color:var(--ink)}
+:root[data-theme='dark'] dialog::backdrop,:root[data-theme='dark'] #scrim{background:rgba(0,0,0,.6)}
+:root[data-theme='dark'] #toast{background:var(--ink);color:var(--bg)}
+:root[data-theme='dark'] .totop{box-shadow:0 6px 18px rgba(0,0,0,.45)}
+:root[data-theme='dark'] .card:hover{box-shadow:0 18px 40px -18px rgba(0,0,0,.7)}
+:root[data-theme='dark'] img{filter:brightness(.94)}
+:root[data-theme='dark'] h1 em{background-image:linear-gradient(100deg,var(--accent-text) 35%,#e6c27a 50%,var(--accent-text) 65%)}
+:root[data-theme='dark'] .mainnav a[aria-current='page'],:root[data-theme='dark'] .navx:hover,:root[data-theme='dark'] #nav.sidenav a:hover{color:var(--accent-text)}
+:root[data-theme='dark'] .mainnav a::after{background:var(--accent-text)}

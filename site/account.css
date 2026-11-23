@@ -1,0 +1,56 @@
+/* Customer account area. Scoped to #accountPage so nothing here can reach the shop. */
+#accountPage .authwrap{max-width:460px;margin:0 auto}
+#accountPage .authwrap h1{margin-bottom:10px}
+#accountPage .authwrap .lede.sm{margin-bottom:24px}
+#accountPage .setf{display:grid;gap:16px;margin-bottom:18px}
+#accountPage .setf label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block}
+#accountPage .setf input,#accountPage .setf textarea,#accountPage .setf select{
+  margin-top:6px;width:100%;font-size:16px;letter-spacing:0;text-transform:none}
+#accountPage .setf .hint{display:block;margin-top:6px;font-size:12px;letter-spacing:0;text-transform:none;color:var(--muted)}
+#accountPage .setf .btn{margin:0}
+#accountPage .setf label.chk{display:flex;align-items:center;gap:9px;text-transform:none;letter-spacing:0;font-size:15px;color:var(--ink)}
+#accountPage .setf label.chk input{width:auto;margin:0;flex:none}
+#accountPage .err{color:var(--accent);font-size:14px;margin:0;min-height:1.2em}
+#accountPage .authalt{font-size:14px;color:var(--muted);margin:0 0 8px}
+#accountPage .authalt .link,#accountPage .acclist .link{font-size:inherit}
+#accountPage .authnote{background:var(--gold-soft);padding:12px 16px;margin:0 0 20px;font-size:15px}
+#accountPage .verifynote{border-left:2px solid var(--gold);padding-left:12px;margin-bottom:14px}
+
+/* confirmation + reset waiting screens */
+#accountPage .authsent{border:1px solid var(--line);background:var(--surface);padding:26px 24px;margin-bottom:18px;text-align:center}
+#accountPage .authsent svg{width:40px;height:40px;color:var(--gold);margin-bottom:10px}
+#accountPage .authsent p{margin:0 0 8px}
+#accountPage .authsent p:last-child{margin-bottom:0;color:var(--muted);font-size:15px}
+
+/* signed-in area */
+#accountPage .acchead{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:18px}
+#accountPage .acchead h1{margin-bottom:4px}
+#accountPage .acchead .btn{margin:0;flex:none}
+#accountPage .accsec{margin-top:40px;border-top:1px solid var(--line);padding-top:24px}
+#accountPage .accsec h2{margin-bottom:16px}
+#accountPage .acclist{list-style:none;margin:0 0 16px;padding:0;display:grid;gap:12px}
+#accountPage .accorder{display:grid;grid-template-columns:1.1fr 1.4fr auto;gap:16px;align-items:start;
+  border:1px solid var(--line);background:var(--surface);padding:14px 16px}
+#accountPage .accorder>div:last-child{text-align:right}
+#accountPage .accitem{display:flex;align-items:center;gap:14px;justify-content:space-between;
+  border-bottom:1px solid var(--line);padding-bottom:10px}
+#accountPage .accitem a{text-decoration:none}
+#accountPage .acclistbox{margin-bottom:26px}
+#accountPage .acclistbox h3{margin-bottom:10px}
+#accountPage .tag{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid var(--line);border-radius:99px;padding:3px 10px;margin-left:8px;color:var(--muted)}
+#accountPage .tag.delivered,#accountPage .tag.confirmed{border-color:#3f6b4a;color:#3f6b4a}
+#accountPage .tag.cancelled{border-color:var(--accent);color:var(--accent)}
+#accountPage .promo{max-width:420px}
+#accountPage summary{cursor:pointer}
+
+/* header link state: filled in once the customer is signed in */
+.icon-btn[data-account].on svg{color:var(--accent)}
+.icon-btn[data-account].on::after{content:'';position:absolute;top:-1px;right:-3px;
+  width:7px;height:7px;border-radius:50%;background:var(--accent)}
+
+@media(max-width:760px){
+  #accountPage .accorder{grid-template-columns:1fr;gap:8px}
+  #accountPage .accorder>div:last-child{text-align:left}
+  #accountPage .acchead{flex-direction:column;gap:12px}
+}

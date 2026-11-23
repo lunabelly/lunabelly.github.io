@@ -1,0 +1,137 @@
+/* Luna AI: floating button and right-hand panel in the Studio. Uses the shop's own colours and fonts. */
+.lu-fab{position:fixed;right:22px;bottom:22px;z-index:60;display:inline-flex;align-items:center;gap:10px;padding:12px 20px 12px 14px;border:1px solid var(--gold);border-radius:999px;background:var(--ink);color:var(--accent-ink);font:400 13px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;cursor:pointer;box-shadow:0 10px 30px -12px rgba(42,26,22,.55);transition:transform .2s,background .2s}
+.lu-fab:hover{background:var(--accent);transform:translateY(-2px)}
+.lu-fab:focus-visible,.lu-panel button:focus-visible,.lu-panel textarea:focus-visible,.lu-panel input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.lu-fab svg{width:22px;height:22px}
+.lu-fab[hidden],.lu-panel[hidden],.lu-panel [hidden]{display:none!important}
+.lu-panel svg,.lu-fab svg{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.lu-avatar svg path:first-child,.lu-fab svg path:first-child{fill:var(--gold);stroke:var(--gold)}
+.lu-avatar .spark,.lu-fab .spark{stroke:var(--gold)}
+
+.lu-panel{position:fixed;top:0;right:0;bottom:0;z-index:70;width:min(420px,100vw);display:flex;flex-direction:column;background:var(--surface);color:var(--ink);border-left:1px solid var(--line);box-shadow:-24px 0 60px -30px rgba(42,26,22,.45);font-family:var(--sans);animation:luIn .28s ease-out}
+@keyframes luIn{from{transform:translateX(40px)}to{transform:none}}
+@media (max-width:600px){.lu-panel{width:100vw;border-left:0}.lu-fab{right:14px;bottom:14px}}
+
+.lu-head{display:flex;align-items:center;gap:6px;padding:14px 12px 14px 18px;border-bottom:1px solid var(--line);background:var(--bg)}
+.lu-avatar{flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--ink);border:1px solid var(--gold)}
+.lu-avatar svg{width:20px;height:20px}
+.lu-avatar.big{width:58px;height:58px}.lu-avatar.big svg{width:30px;height:30px}
+.lu-id{flex:1;min-width:0;display:flex;flex-direction:column;margin-left:6px}
+.lu-id strong{font:500 24px/1 var(--serif)}
+.lu-status{font-size:12px;color:var(--muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lu-ib{flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;padding:0;border:0;border-radius:50%;background:transparent;color:var(--ink);cursor:pointer;transition:background .2s,color .2s}
+.lu-ib:hover{background:var(--gold-soft);color:var(--accent)}
+.lu-ib[aria-pressed='true']{background:var(--gold-soft)}
+.lu-ib svg{width:20px;height:20px}
+
+.lu-setup{margin:12px 14px 0;padding:12px 14px;border:1px solid var(--gold);background:var(--gold-soft);font-size:13px;line-height:1.5}
+.lu-setup code,.lu-msg code,#lunaForm2 code{font-family:ui-monospace,Menlo,monospace;font-size:.92em;background:var(--gold-soft);padding:1px 5px;border-radius:3px}
+
+.lu-hist{flex:1;overflow:auto;padding:16px 14px}
+.lu-hist h3{font:500 22px var(--serif);margin:0 0 10px}
+.lu-hist ul{list-style:none;margin:0;padding:0}
+.lu-hist li{display:flex;align-items:center;gap:4px;border-bottom:1px solid var(--line)}
+.lu-hrow{flex:1;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding:12px 6px;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.lu-hrow span{max-width:100%;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lu-hrow small{font-size:11px;color:var(--muted)}
+.lu-hrow:hover span,.lu-hrow.on span{color:var(--accent)}
+.lu-del{width:34px;height:34px;color:var(--muted)}
+.lu-del.sure{background:var(--accent);color:var(--accent-ink)}
+.lu-none,.lu-loading{color:var(--muted);font-size:13px;padding:12px 6px}
+.lu-hist:not([hidden])~.lu-log{display:none}
+
+.lu-log{flex:1;overflow-y:auto;padding:18px 16px 8px;display:flex;flex-direction:column;gap:14px;overscroll-behavior:contain}
+.lu-hello{text-align:center;margin:auto 0;padding:10px 4px}
+.lu-hello h3{font:500 30px var(--serif);margin:14px 0 6px}
+.lu-hello p{color:var(--muted);font-size:14px;line-height:1.55;margin:0 auto 18px;max-width:320px}
+.lu-chips{display:flex;flex-direction:column;gap:8px;align-items:stretch}
+.lu-chip{padding:11px 14px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:14px;text-align:left;cursor:pointer;transition:border-color .2s,color .2s}
+.lu-chip:hover{border-color:var(--gold);color:var(--accent)}
+
+.lu-msg{max-width:92%;font-size:14.5px;line-height:1.55;overflow-wrap:anywhere}
+.lu-me{align-self:flex-end;background:var(--ink);color:var(--accent-ink);padding:10px 14px;border-radius:16px 16px 4px 16px;white-space:pre-wrap}
+.lu-ai{align-self:flex-start;max-width:100%;width:100%}
+.lu-spoken.lu-me{background:var(--accent)}
+.lu-spoken.lu-ai .lu-body::before{content:'Spoken';display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
+.lu-cardonly .lu-body{display:none}
+.lu-note{font-size:12.5px;color:var(--muted)}
+.lu-note .lu-body p{margin:0}
+.lu-body p{margin:0 0 10px}.lu-body p:last-child{margin-bottom:0}
+.lu-body h4{font:500 19px var(--serif);margin:14px 0 6px}
+.lu-body ul,.lu-body ol{margin:0 0 10px;padding-left:20px}
+.lu-body li{margin:3px 0}
+.lu-body a{color:var(--accent)}
+.lu-body hr{border:0;border-top:1px solid var(--line);margin:12px 0}
+.lu-body pre{background:var(--bg);border:1px solid var(--line);padding:10px;overflow:auto;font-size:12.5px;margin:0 0 10px}
+.lu-body pre code{background:none;padding:0}
+.lu-tbl{overflow-x:auto;margin:0 0 10px;border:1px solid var(--line)}
+.lu-tbl table{border-collapse:collapse;width:100%;font-size:13px}
+.lu-tbl th,.lu-tbl td{padding:7px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+.lu-tbl th{background:var(--bg);font-weight:500}
+.lu-tbl tr:last-child td{border-bottom:0}
+.lu-streaming .lu-body>:last-child::after{content:'';display:inline-block;width:7px;height:14px;margin-left:3px;vertical-align:-2px;background:var(--gold);animation:luBlink 1s steps(2) infinite}
+@keyframes luBlink{50%{opacity:0}}
+
+.lu-act{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);margin-bottom:6px}
+.lu-dots{display:inline-flex;gap:3px}
+.lu-dots i{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:luDot 1.2s infinite ease-in-out}
+.lu-dots i:nth-child(2){animation-delay:.15s}.lu-dots i:nth-child(3){animation-delay:.3s}
+@keyframes luDot{0%,80%,100%{opacity:.25;transform:scale(.8)}40%{opacity:1;transform:none}}
+
+.lu-src{margin-top:10px;padding-top:8px;border-top:1px dashed var(--line);font-size:12.5px}
+.lu-src>span{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.lu-src ol{margin:4px 0 0;padding-left:18px}
+.lu-src li{margin:3px 0}
+.lu-src a{color:var(--accent)}
+.lu-src small{color:var(--muted)}
+
+.lu-card{margin-top:10px;padding:12px 14px;border:1px solid var(--gold);background:var(--bg)}
+.lu-card.lu-danger{border-color:var(--accent);border-width:1px 1px 1px 4px}
+.lu-ch{margin:0 0 4px;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.lu-danger .lu-ch{color:var(--accent)}
+.lu-cs{margin:0 0 10px;font-size:14px}
+.lu-cphrase{display:block;font-size:13px;margin-bottom:10px}
+.lu-cphrase input{display:block;width:100%;margin-top:6px;padding:9px 10px;border:1px solid var(--line);background:var(--surface);font:inherit}
+.lu-cb{display:flex;gap:8px}
+.lu-cb .btn{padding:10px 18px;font-size:11px}
+.lu-cr{margin:8px 0 0;font-size:12.5px;color:var(--accent)}
+.lu-cr:empty{display:none}
+.lu-done{border-color:#5b7a52}.lu-done .lu-ch{color:#4a6b42}
+.lu-cancelled,.lu-expired{opacity:.7;border-style:dashed}.lu-cancelled .lu-ch,.lu-expired .lu-ch{color:var(--muted)}
+.lu-failed .lu-ch{color:var(--accent)}
+.lu-done .lu-cs,.lu-cancelled .lu-cs,.lu-expired .lu-cs,.lu-failed .lu-cs{margin:0}
+
+.lu-voice{display:flex;flex-direction:column;align-items:center;gap:10px;padding:16px 14px 12px;border-top:1px solid var(--line);background:linear-gradient(180deg,var(--bg),var(--surface))}
+.lu-orb{position:relative;width:86px;height:86px}
+.lu-orb span,.lu-orb::before{content:'';position:absolute;inset:0;border-radius:50%}
+.lu-orb span{background:radial-gradient(circle at 38% 34%,#f6e7c4,var(--gold) 55%,#7e5f22);box-shadow:0 0 0 1px var(--gold),0 12px 30px -10px rgba(176,138,62,.8);transition:transform .3s}
+.lu-orb::before{background:rgba(176,138,62,.25);transform:scale(1);opacity:0}
+.lu-orb[data-state='listening']::before{animation:luPulse 2s infinite ease-out}
+.lu-orb[data-state='thinking'] span{animation:luSpin 1.4s infinite linear;background:conic-gradient(from 0deg,var(--gold),#f6e7c4,var(--gold),#7e5f22,var(--gold))}
+.lu-orb[data-state='speaking'] span{animation:luTalk .5s infinite alternate ease-in-out;background:radial-gradient(circle at 38% 34%,#f6e7c4,var(--accent) 60%,#3e0f18)}
+.lu-orb[data-state='idle'] span{filter:grayscale(.6);opacity:.7}
+@keyframes luPulse{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.55);opacity:0}}
+@keyframes luSpin{to{transform:rotate(360deg)}}
+@keyframes luTalk{from{transform:scale(.94)}to{transform:scale(1.06)}}
+.lu-vstate{margin:0;font:500 20px var(--serif)}
+.lu-vbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.lu-vb{display:inline-flex;flex-direction:column;align-items:center;gap:4px;min-width:66px;padding:8px 6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:11px;letter-spacing:.08em;cursor:pointer;transition:border-color .2s,color .2s}
+.lu-vb:hover{border-color:var(--gold);color:var(--accent)}
+.lu-vb svg{width:20px;height:20px}
+.lu-vb[aria-pressed='true']{background:var(--gold-soft)}
+.lu-end{background:var(--ink);color:var(--accent-ink);border-color:var(--ink)}
+.lu-end:hover{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+@media (prefers-reduced-motion:reduce){.lu-panel,.lu-orb span,.lu-orb::before,.lu-dots i,.lu-streaming .lu-body>:last-child::after{animation:none!important}}
+
+.lu-form{display:flex;align-items:flex-end;gap:4px;padding:10px 10px 12px 14px;border-top:1px solid var(--line);background:var(--surface)}
+.lu-voicing .lu-form{border-top:0;padding-top:4px}
+.lu-voicing .lu-mic{display:none}
+.lu-form textarea{flex:1;min-height:40px;max-height:160px;resize:none;padding:10px 12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:14.5px;line-height:1.4}
+.lu-send{background:var(--ink);color:var(--accent-ink)}
+.lu-send:hover{background:var(--accent);color:var(--accent-ink)}
+.lu-form.busy .lu-send{opacity:.4;pointer-events:none}
+
+#lunaForm2{margin-top:28px}
+.lu-adv{margin:6px 0 14px}
+.lu-adv summary{cursor:pointer;font-size:13px;color:var(--muted);margin-bottom:8px}
+@media (max-width:600px){body.lu-open{overflow:hidden}}

@@ -1,0 +1,21 @@
+html,body{overflow-x:clip}
+body{position:relative}
+#sky{position:absolute;left:0;top:0;width:100%;height:100%;z-index:3;pointer-events:none;overflow:hidden}
+.band{position:absolute;left:0;width:100%;height:800px;content-visibility:auto;pointer-events:none}
+.st{position:absolute;pointer-events:none}
+.st i{display:block;width:100%;height:100%;background:radial-gradient(circle,#fff6d6 0 12%,#e2ab3c 34%,rgba(196,142,44,0) 78%);clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%);animation:tw var(--d,4s) ease-in-out var(--l,0s) infinite alternate}
+.st.big i{clip-path:polygon(50% 0,57% 43%,100% 50%,57% 57%,50% 100%,43% 57%,0 50%,43% 43%);filter:drop-shadow(0 0 8px rgba(217,181,106,1)) drop-shadow(0 0 18px rgba(240,200,120,.7))}
+.st.dot i{clip-path:none;border-radius:50%;background:radial-gradient(circle,#ffeebb,#d79f34 55%,rgba(196,142,44,0) 80%)}
+.st.pl i{clip-path:none;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0%,#f3e9d6 45%,#d9c9a8 100%);box-shadow:0 1px 3px rgba(110,31,44,.25)}
+@media(min-width:760px){.st:not(.big):not(.dot):not(.pl) i{filter:drop-shadow(0 0 3px rgba(204,150,48,.95))}}
+.mA{animation:drift var(--md,10s) ease-in-out var(--l,0s) infinite alternate}
+.mO{animation:orbit var(--md,14s) linear var(--l,0s) infinite}
+.mR{animation:travel var(--md,10s) linear var(--l,0s) infinite}
+@keyframes tw{from{opacity:.45;scale:.72}to{opacity:1;scale:1.12}}
+@keyframes drift{to{translate:var(--mx,0px) var(--my,0px)}}
+@keyframes orbit{25%{translate:var(--mx,0px) 0px}50%{translate:var(--mx,0px) var(--my,0px)}75%{translate:0px var(--my,0px)}}
+@keyframes travel{0%{translate:0px 0px;opacity:0}14%{opacity:1}82%{opacity:1}100%{translate:var(--mx,0px) var(--my,0px);opacity:0}}
+.shoot{position:absolute;width:110px;height:2px;border-radius:2px;background:linear-gradient(90deg,rgba(217,181,106,0),#f1cf86 70%,#fff);opacity:0;rotate:var(--rot,80deg);animation:shoot 1.5s ease-out forwards;filter:drop-shadow(0 0 4px rgba(240,200,120,.9))}
+@keyframes shoot{0%{opacity:0;translate:0px 0px}12%{opacity:1}100%{opacity:0;translate:var(--tx,40px) var(--ty,380px)}}
+.story::after{display:none}
+@media(prefers-reduced-motion:reduce){.st,.st i{animation:none!important}.shoot{display:none}}

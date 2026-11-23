@@ -1,0 +1,45 @@
+/* service.js: price alerts, returns and receipts, install card. Also the offline page. */
+.pa-link{display:inline-flex;align-items:center;gap:8px;margin:12px 0 4px;font-size:14px}
+.pa-link svg,.pa-bar svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.pa-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:-10px 0 26px;padding:14px 20px;border:1px solid var(--line);border-radius:18px;background:var(--surface)}
+.pa-bar p{flex:1;min-width:220px;margin:0;color:var(--muted)}
+.pa-bar svg{color:var(--gold);width:22px;height:22px}
+
+.svc-acts{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 4px}
+.ret-list{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.ret-list h3,.ret-form h3{margin:0 0 10px}
+.ret-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:10px 0;border-bottom:1px dotted var(--line)}
+.ret-st{display:inline-block;margin-left:6px;padding:2px 10px;border-radius:999px;font-size:12px;background:var(--gold-soft);color:var(--ink)}
+.ret-st.ok{background:#e6efe2;color:#2f5137}
+.ret-st.bad{background:#f3e3e0;color:#7a2d22}
+.ret-done{padding:12px 16px;border-radius:14px;background:#e6efe2;color:#2f5137}
+.ret-form{margin-top:22px;padding:20px 22px;border:1px solid var(--gold);border-radius:18px;background:var(--bg)}
+.ret-form label{display:block;margin-bottom:12px}
+.ret-form textarea{width:100%}
+.ret-item{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:8px 0;border-bottom:1px dotted var(--line)}
+.ret-item .chk{margin:0}
+.ret-qty{display:flex !important;align-items:center;gap:8px;margin:0 !important;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ret-qty select{width:auto;padding:4px 10px}
+:root[data-theme='dark'] .ret-st.ok,:root[data-theme='dark'] .ret-done{background:#1f2e1f;color:#9dd0a6}
+:root[data-theme='dark'] .ret-st.bad{background:#3a1d1d;color:#f29a90}
+
+.app-card{position:fixed;left:10px;right:10px;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:24;display:flex;align-items:center;gap:12px;
+  padding:12px 40px 12px 12px;border:1px solid var(--gold);border-radius:18px;background:var(--surface);color:var(--ink);box-shadow:0 14px 40px -16px rgba(42,26,22,.45);animation:appIn .35s ease-out}
+.app-card img{border-radius:11px;flex:none}
+.app-card div{flex:1;min-width:0;font-size:13.5px;line-height:1.35}
+.app-card strong{display:block;font-weight:500}
+.app-card span{color:var(--muted)}
+.app-card .btn{padding:9px 16px;font-size:12px}
+.app-card .x{position:absolute;top:4px;right:6px;width:32px;height:32px;border:0;background:none;color:var(--muted);font-size:20px;cursor:pointer}
+@keyframes appIn{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.app-card{animation:none}}
+.nav-app{color:var(--accent) !important}
+:root[data-theme='dark'] .nav-app{color:var(--accent-text) !important}
+
+/* offline.html */
+body.offline{min-height:100vh;display:grid;place-items:center;background:var(--bg,#faf5ec)}
+.off-in{text-align:center}
+.off-moon{width:72px;height:72px;fill:var(--gold,#c79a3e);margin-bottom:10px}
+/* Phones: the pop-ups size to their content, and the chat button moves above the app card */
+dialog.pa-dlg,dialog.share-dlg{height:auto !important;max-height:calc(100% - 32px);margin:auto}
+body.has-appcard .chat-fab{bottom:calc(158px + env(safe-area-inset-bottom,0px))}

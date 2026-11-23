@@ -1,0 +1,31 @@
+/* Studio night mode: extra rules on top of /theme.css for Studio-only panels */
+:root[data-theme='dark'] .tile,:root[data-theme='dark'] .kpi,:root[data-theme='dark'] .lst,:root[data-theme='dark'] .hsec,
+:root[data-theme='dark'] .xcard,:root[data-theme='dark'] .crm-stat,:root[data-theme='dark'] .range button{background:rgba(35,22,20,.82)}
+:root[data-theme='dark'] .tile:hover,:root[data-theme='dark'] .tile:focus-visible{box-shadow:0 18px 40px -26px rgba(0,0,0,.8)}
+:root[data-theme='dark'] .tic,:root[data-theme='dark'] .crm-when.now,:root[data-theme='dark'] .tagchip button:hover,:root[data-theme='dark'] .crm-av,
+:root[data-theme='dark'] .xinfo summary,:root[data-theme='dark'] .lu-ib:hover,:root[data-theme='dark'] .lu-chip:hover,:root[data-theme='dark'] .lu-cr,
+:root[data-theme='dark'] .lu-vb:hover,:root[data-theme='dark'] .tabs button.on,:root[data-theme='dark'] .adm .top .logo:hover{color:var(--accent-text)}
+:root[data-theme='dark'] .lu-fab{background:var(--accent);box-shadow:0 10px 30px -12px rgba(0,0,0,.7)}
+:root[data-theme='dark'] .crm-when.late{background:#3a1d1a;border-color:#7a3a30;color:var(--err-text)}
+:root[data-theme='dark'] .crm-marks span,:root[data-theme='dark'] .crm-st.st-delivered,:root[data-theme='dark'] .xverified{background:#1f2e1f;color:var(--ok-text)}
+:root[data-theme='dark'] .crm-st.st-cancelled{background:#3a1d1d;color:var(--err-text)}
+:root[data-theme='dark'] .tag.pending{color:#e2c27c}
+:root[data-theme='dark'] .warnbox .link{color:var(--accent-text)}
+:root[data-theme='dark'] .pf-re{background:#2b2213}
+:root[data-theme='dark'] .pf-saved td{background:#1f2e1f}
+:root[data-theme='dark'] .hsec .bad{color:var(--err-text)}
+:root[data-theme='dark'] .lu-done .lu-ch{color:var(--ok-text)}
+:root[data-theme='dark'] #shipDlg::backdrop{background:rgba(0,0,0,.6)}
+/* The newsletter preview stays light: it shows the email as subscribers will see it */
+:root[data-theme='dark'] .nl-prev{background:#3a2a22}
+:root[data-theme='dark'] .nl-foot{color:#bba796}
+/* Switch button next to Sign out */
+.st-theme{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;margin-left:auto;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--ink);cursor:pointer}
+.st-theme svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.st-theme .i-sun{display:none}
+:root[data-theme='dark'] .st-theme .i-moon{display:none}
+:root[data-theme='dark'] .st-theme .i-sun{display:inline}
+.adm .top .st-theme + [data-action='signout']{margin-left:14px}
+@media print{.st-theme{display:none}}
+/* Luna: dark-on-cream bubbles and buttons would read cream-on-cream at night */
+:root[data-theme='dark'] .lu-me,:root[data-theme='dark'] .lu-end,:root[data-theme='dark'] .lu-send{background:var(--accent);color:var(--accent-ink)}
