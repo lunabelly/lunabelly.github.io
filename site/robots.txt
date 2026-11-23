@@ -1,8 +1,8 @@
 # Luna Belly
 # Search engines and AI search tools that find and link to pages are named
 # below so the intent is clear. They may read every public page.
-# AI training crawlers are not listed separately: for now they follow the
-# general rule at the bottom, as before. That choice belongs to the shop owner.
+# AI training crawlers (GPTBot, Google-Extended, ClaudeBot, CCBot and others) are
+# allowed too, by the shop owner's choice: they follow the general rule at the bottom.
 
 User-agent: Googlebot
 Allow: /
