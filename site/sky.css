@@ -18,4 +18,6 @@ body{position:relative}
 .shoot{position:absolute;width:110px;height:2px;border-radius:2px;background:linear-gradient(90deg,rgba(217,181,106,0),#f1cf86 70%,#fff);opacity:0;rotate:var(--rot,80deg);animation:shoot 1.5s ease-out forwards;filter:drop-shadow(0 0 4px rgba(240,200,120,.9))}
 @keyframes shoot{0%{opacity:0;translate:0px 0px}12%{opacity:1}100%{opacity:0;translate:var(--tx,40px) var(--ty,380px)}}
 .story::after{display:none}
+/* Off-screen bands, and the whole sky while the tab is hidden, stop animating (see sky.js). */
+.band.off .st,.band.off .st i,#sky.off .st,#sky.off .st i{animation-play-state:paused}
 @media(prefers-reduced-motion:reduce){.st,.st i{animation:none!important}.shoot{display:none}}

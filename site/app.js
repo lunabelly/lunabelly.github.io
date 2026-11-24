@@ -52,7 +52,7 @@ const stars=(n,label)=>`<span class='stars' role='img' aria-label='${esc(label||
 function rated(id){const r=reviews.filter(x=>x.product_id===id);if(!r.length)return null;return{n:r.length,avg:r.reduce((s,x)=>s+x.rating,0)/r.length,list:r}}
 function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.remove('show'),2200)}
 function setMeta(sel,attr,v){const e=document.querySelector(sel);if(e)e.setAttribute(attr,v)}
-function setHero(url){if(!isUrl(url))return;const box=document.querySelector('.hero-art');if(!box)return;const img=document.createElement('img');img.fetchPriority='high';setImg(img,url,[640,828,1080,1600],PP_S);img.alt='A Luna Belly waist chain worn over a saree';Object.assign(img.style,{width:'100%',height:'100%',objectFit:'cover',borderRadius:'inherit',display:'block'});box.style.overflow='hidden';box.replaceChildren(img)}
+function setHero(url){if(!isUrl(url))return;const box=document.querySelector('.hero-art');if(!box)return;const img=document.createElement('img');img.fetchPriority='high';setImg(img,url,[640,828,1080,1600],PP_S);img.alt='A Luna Belly waist chain worn over a saree';Object.assign(img.style,{width:'100%',height:'100%',objectFit:'cover',borderRadius:'inherit',display:'block'});box.style.overflow='hidden';box.textContent='';box.appendChild(img)}
 function loadHero(){if(isUrl(HERO)){setHero(HERO);return}const f=products.find(p=>p.featured&&isUrl(p.image_url))||products.find(p=>isUrl(p.image_url));if(f)setHero(f.image_url)}
 
 /* ---------- wishlist ---------- */

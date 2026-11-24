@@ -23,16 +23,17 @@ el.style.cssText='left:'+x.toFixed(1)+'px;top:'+y.toFixed(1)+'px;width:'+s.toFix
 el.appendChild(document.createElement('i'));band.appendChild(el);
 }
 function build(){
-sky.textContent='';
+if(io)io.disconnect();sky.textContent='';
 W=document.documentElement.clientWidth;H=document.documentElement.scrollHeight;
 const mobile=W<760,g=document.getElementById('grid'),gut=g?Math.max(0,g.getBoundingClientRect().left):24;
 zone=mobile?Math.max(gut+26,48):Math.min(Math.max(gut+36,110),W*.24);
-const sideN=Math.round((mobile?72:180)*BH/1000),midN=Math.round((mobile?4:10)*BH/1000);
+// Kept light on purpose: every star is animated, so the count is what decides how smooth the page feels.
+const sideN=Math.round((mobile?30:70)*BH/1000),midN=Math.round((mobile?2:5)*BH/1000);
 for(let y=0;y<H;y+=BH){
 const b=document.createElement('div');b.className='band';b.style.top=y+'px';
 for(let i=0;i<sideN;i++)star(b,1+i%2);
 for(let i=0;i<midN;i++)star(b,0);
-sky.appendChild(b);
+sky.appendChild(b);watch(b);
 }
 hero(mobile);
 }
@@ -46,7 +47,7 @@ else{rg.selectNodeContents(c);for(const q of rg.getClientRects())boxes.push(q)}
 }
 if(!boxes.length||hr.height<80)return;
 const b=document.createElement('div');b.className='band';b.style.top=(hr.top+scrollY)+'px';b.style.height=hr.height+'px';
-const want=mobile?30:80,P=7;let n=0;
+const want=mobile?14:36,P=7;let n=0;
 for(let t=0;t<6000&&n<want;t++){
 const x=r(hr.left+6,hr.right-40),y=r(hr.top+10,hr.bottom-44);
 if(ar&&x>ar.left-30&&x<ar.right&&y>ar.top-30&&y<ar.bottom)continue;
@@ -55,8 +56,11 @@ for(const q of boxes){const dx=Math.max(q.left-P-x-30,0,x-q.right-P),dy=Math.max
 if(dist===0||Math.random()>Math.exp(-dist/150))continue;
 star(b,3,x-hr.left,y-hr.top);n++;
 }
-sky.appendChild(b);
+sky.appendChild(b);watch(b);
 }
+// Stars only move while their part of the page is on screen; the rest wait, paused.
+const io='IntersectionObserver' in window?new IntersectionObserver(function(es){for(const e of es)e.target.classList.toggle('off',!e.isIntersecting)},{rootMargin:'200px 0px'}):null;
+function watch(b){if(io){b.classList.add('off');io.observe(b)}}
 let rt;
 function check(){const w=document.documentElement.clientWidth,h=document.documentElement.scrollHeight;if(w!==W||Math.abs(h-H)>200)build()}
 addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(check,300)});
@@ -64,7 +68,9 @@ const grid=document.getElementById('grid');
 if(grid){new MutationObserver(function(){clearTimeout(rt);rt=setTimeout(check,400)}).observe(grid,{childList:true})}
 addEventListener('load',function(){setTimeout(build,300)});
 build();
+document.addEventListener('visibilitychange',function(){sky.classList.toggle('off',document.hidden)});
 function shoot(){
+if(document.hidden){setTimeout(shoot,4000);return}
 const left=Math.random()<.5,e=document.createElement('div'),inset=r(6,Math.max(10,zone-24));
 e.className='shoot';
 e.style.cssText='left:'+((left?inset:W-inset)-55).toFixed(0)+'px;top:'+(scrollY+r(40,innerHeight*.55)).toFixed(0)+'px;--rot:'+(left?r(72,86):r(94,108)).toFixed(0)+'deg;--tx:'+((left?1:-1)*r(20,70)).toFixed(0)+'px;--ty:'+r(300,460).toFixed(0)+'px';
