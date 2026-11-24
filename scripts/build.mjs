@@ -185,4 +185,33 @@ write('spa-404.js', `'use strict';
 })();
 `);
 
+// 7. Version tags on the site's own scripts and styles, so after an update a browser never mixes
+//    new pages with old files it saved (GitHub lets browsers keep files for 10 minutes).
+//    The tag is the file's own fingerprint: it only changes when the file does.
+const tags = {};
+const tag = (rel) => {
+  if (!(rel in tags)) {
+    const f = path.join(OUT, rel);
+    tags[rel] = fs.existsSync(f) ? crypto.createHash('sha1').update(fs.readFileSync(f)).digest('hex').slice(0, 10) : '';
+  }
+  return tags[rel];
+};
+let tagged = 0;
+(function walk(dir) {
+  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+    const f = path.join(dir, e.name);
+    if (e.isDirectory()) { if (e.name !== 'img') walk(f); continue; }
+    if (!e.name.endsWith('.html')) continue;
+    const t = fs.readFileSync(f, 'utf8');
+    const out = t.replace(/((?:src|href)=')\/([a-z0-9][a-z0-9/_.-]*\.(?:js|css))'/gi, (m, attr, rel) => {
+      const v = tag(rel);
+      if (!v) return m;
+      tagged++;
+      return attr + '/' + rel + '?v=' + v + "'";
+    });
+    if (out !== t) fs.writeFileSync(f, out);
+  }
+})(OUT);
+log(`version tags: ${tagged} links`);
+
 log('done:', OUT, 'for', SITE);
