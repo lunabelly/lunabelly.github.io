@@ -102,7 +102,7 @@
   function renderAbout() {
     meta('About us', 'Luna Belly is a small shop for waist chains and kamarbandhs, chosen from jewellery makers in India, Hong Kong and beyond, with a separate handmade collection.', '/about');
     box.innerHTML = "<div class='about'><p class='eyebrow'>About us</p><h1>Waist jewellery, gathered from around the world</h1>" +
-      "<p class='lede'>Luna Belly is a small online shop based in Birmingham, UK. We look for one thing: beautiful chains for the waist.</p>" +
+      "<p class='lede'>Luna Belly is a small online shop based in Birmingham, UK. We look for one thing: beautiful chains for the waist. We are not connected to other shops or brands with a similar name.</p>" +
       "<div class='aboutcols'><div>" +
       '<h2>Why the waist</h2>' +
       '<p>The kamarbandh has been worn for centuries, at weddings, at festivals and on ordinary evenings. It is the piece that finishes a saree and the one that moves when you do. We think it deserves the same attention as a necklace, and far more than it usually gets.</p>' +

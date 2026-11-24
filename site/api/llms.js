@@ -45,6 +45,7 @@ module.exports = async (req, res) => {
     '',
     'Facts:',
     '- Online shop only, based in Birmingham, United Kingdom. No walk-in counter.',
+    '- Not connected to other shops or brands with a similar name, such as Etsy sellers or stores outside the UK.',
     '- Sells waist jewellery only. Does not sell necklaces, earrings or full bridal sets.',
     '- Pieces are plated jewellery (mostly gold-plated brass or gold-plated stainless steel), not solid gold. Each product page lists the base metal, plating, dimensions, weight and adjustable waist range.',
     '- Most pieces come from jewellery makers in India, Hong Kong and elsewhere; handmade pieces are labelled.',

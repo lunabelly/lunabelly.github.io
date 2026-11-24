@@ -183,7 +183,7 @@ async function blogList() {
 }
 // Same words as the About page drawn by pages.js.
 const ABOUT = "<div class='about'><p class='eyebrow'>About us</p><h1>Waist jewellery, gathered from around the world</h1>" +
-  "<p class='lede'>Luna Belly is a small online shop based in Birmingham, UK. We look for one thing: beautiful chains for the waist.</p>" +
+  "<p class='lede'>Luna Belly is a small online shop based in Birmingham, UK. We look for one thing: beautiful chains for the waist. We are not connected to other shops or brands with a similar name.</p>" +
   "<div class='aboutcols'><div><h2>Why the waist</h2><p>The kamarbandh has been worn for centuries, at weddings, at festivals and on ordinary evenings. It is the piece that finishes a saree and the one that moves when you do. We think it deserves the same attention as a necklace, and far more than it usually gets.</p>" +
   '<h2>Where our pieces come from</h2><p>We do not pretend to make everything we sell. Most of our pieces come from jewellery makers and suppliers in India, Hong Kong and elsewhere. We choose each design for how it sits and how it moves, check it when it arrives, and describe it as it is: the base metal, the plating and the stones.</p>' +
   "<h2>Handmade pieces</h2><p>Some pieces are made by hand. Those carry a Handmade badge on their photo and live together in our <a href='/c/handmade'>Handmade collection</a>, so you always know which is which. Because each one is made individually, no two are exactly alike.</p></div><div>" +
