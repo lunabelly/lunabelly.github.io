@@ -80,6 +80,14 @@ const [prods, colls, posts, hero] = await Promise.all([
   q('site_settings', 'select=value&key=eq.hero_image_url'),
 ]);
 log(`shop data: ${prods.length} pieces, ${colls.length} collections, ${posts.length} articles`);
+// The same public data the shop asks for when it opens (same queries, same order), saved with the
+// site so the pieces show at once. app.js still asks the live database and redraws if anything changed.
+const [snapProducts, snapReviews, snapColls, snapSettings] = await Promise.all([
+  q('products', 'select=*&order=sort_order.asc'),
+  q('reviews', 'select=product_id,author,rating,title,body,created_at,is_sample&status=eq.approved&order=created_at.desc'),
+  q('collections', 'select=*&active=eq.true&order=sort_order.asc'),
+  q('site_settings', 'select=key,value&key=in.(currency,shipping_cents,free_shipping_cents,wrap_cents,hero_image_url,instagram)'),
+]);
 if (!prods.length) throw new Error('The shop returned no products; not publishing.');
 
 // 3. Photos at every width the shop asks for.
@@ -111,12 +119,16 @@ for (const u of [...photos].filter((u) => STORE_IMG.test(u || ''))) {
 write('img-map.js', '/* Made by scripts/build.mjs: each shop photo and the widths saved for it under /img. */\nwindow.LB_IMG=' + JSON.stringify(MAP) + ';\n');
 log(`photos: ${made} resized, ${failed} left as original`);
 
+write('shop-data.js', '/* Made by scripts/build.mjs: the shop\'s public data when the site was built. */\nwindow.LB_DATA=' +
+  JSON.stringify({ products: snapProducts, reviews: snapReviews, collections: snapColls, settings: snapSettings }).replace(/</g, '\\u003c') + ';\n');
+
 // The photo list loads before the shop script on every page that runs it.
 for (const rel of ['index.html']) {
   const f = path.join(OUT, rel);
   const t = fs.readFileSync(f, 'utf8');
   if (!t.includes("<script src='/app.js'>")) throw new Error(rel + ': app.js tag not found');
-  fs.writeFileSync(f, t.replace("<script src='/app.js'>", "<script src='/img-map.js'></script>\n<script src='/app.js'>"));
+  fs.writeFileSync(f, t.replace("<script src='/config.js'></script>", "<script src='/shop-data.js' data-snapshot></script>\n<script src='/config.js'></script>")
+    .replace("<script src='/app.js'>", "<script src='/img-map.js'></script>\n<script src='/app.js'>"));
 }
 
 // Vercel image addresses in generated pages -> the files made above (or the original photo).

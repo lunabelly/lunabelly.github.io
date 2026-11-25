@@ -77,18 +77,19 @@ $('#grid').innerHTML=list.length?list.map((p,i)=>card(p,i<4)).join(''):`<div cla
 function strip(title,list,id){if(!list.length)return '';return `<section class='more' id='${id}'><p class='eyebrow'>${esc(title)}</p><div class='grid'>${list.map(p=>card(p)).join('')}</div></section>`}
 
 /* ---------- data ---------- */
-async function loadSettings(){const r=await sb.from('site_settings').select('key,value');if(r.error||!r.data)return;const s={};r.data.forEach(x=>{s[x.key]=x.value});
+async function loadSettings(){const r=await sb.from('site_settings').select('key,value');if(r.error||!r.data)return;applySettings(r.data)}
+function applySettings(rows){if(!Array.isArray(rows))return;const s={};rows.forEach(x=>{s[x.key]=x.value});
 if(/^[A-Z]{3}$/.test(s.currency||''))CUR=s.currency;if(/^\d+$/.test(s.shipping_cents||''))SHIP=+s.shipping_cents;if(/^\d+$/.test(s.free_shipping_cents||''))FREE_SHIP=+s.free_shipping_cents;if(/^\d+$/.test(s.wrap_cents||''))WRAP=+s.wrap_cents;
 HERO=s.hero_image_url||null;IG=(s.instagram||'').replace(/^@/,'').trim();
 $$('[data-free]').forEach(e=>{e.textContent=short(FREE_SHIP)});
 $$('[data-ship]').forEach(e=>{e.textContent=short(SHIP)});
 $$('[data-wrap]').forEach(e=>{e.textContent=short(WRAP)});
 if(IG)$$('[data-ig]').forEach(e=>{e.href='https://instagram.com/'+encodeURIComponent(IG);e.hidden=false;e.textContent='@'+IG})}
-async function loadAll(){
-const [,pr,rv,cl]=await Promise.all([loadSettings(),sb.from('products').select('*').order('sort_order'),sb.from('reviews').select('product_id,author,rating,title,body,created_at,is_sample').eq('status','approved').order('created_at',{ascending:false}),sb.from('collections').select('*').eq('active',true).order('sort_order')]);
-collections=cl.error?[]:(cl.data||[]);
-if(pr.error){const msg=`<div class='empty'><p>We could not load the collection. Please refresh the page.</p></div>`;$('#grid').innerHTML=msg;$('#productPage').innerHTML=msg;$('#wishPage').innerHTML=msg;return}
-products=pr.data||[];reviews=rv.error?[]:(rv.data||[]);
+/* The build saves a copy of the shop's public data in shop-data.js (window.LB_DATA), so the pieces
+   appear at once. The live database is still asked straight away, and the page is drawn again
+   only if something changed since that copy was made. */
+let shownData='';
+function showAll(pr,rv,cl){collections=cl;products=pr;reviews=rv;
 renderGrid();renderCart();loadHero();paintWish();
 if(slugNow)showProduct();
 else if(collNow)renderColl();
@@ -96,6 +97,14 @@ else if(isWish)renderWish();
 else if(isTrack)renderTrack();
 else if(isGiftPage)renderGiftPage();
 else{renderColls();renderPicks();renderRecent('#homeRecent',null)}}
+async function loadAll(){
+const snap=window.LB_DATA;
+if(snap&&Array.isArray(snap.products)&&snap.products.length){try{applySettings(snap.settings);showAll(snap.products,snap.reviews||[],snap.collections||[]);shownData=JSON.stringify([snap.products,snap.reviews||[],snap.collections||[]])}catch(e){shownData=''}}
+const [,pr,rv,cl]=await Promise.all([loadSettings(),sb.from('products').select('*').order('sort_order'),sb.from('reviews').select('product_id,author,rating,title,body,created_at,is_sample').eq('status','approved').order('created_at',{ascending:false}),sb.from('collections').select('*').eq('active',true).order('sort_order')]);
+if(pr.error){if(shownData)return;collections=cl.error?[]:(cl.data||[]);const msg=`<div class='empty'><p>We could not load the collection. Please refresh the page.</p></div>`;$('#grid').innerHTML=msg;$('#productPage').innerHTML=msg;$('#wishPage').innerHTML=msg;return}
+const P=pr.data||[],R=rv.error?reviews:(rv.data||[]),C=cl.error?collections:(cl.data||[]);
+if(shownData&&JSON.stringify([P,R,C])===shownData)return;
+showAll(P,R,C)}
 
 /* ---------- product page ---------- */
 function specRows(p){const rows=[];
