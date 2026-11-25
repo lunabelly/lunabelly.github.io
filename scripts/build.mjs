@@ -185,7 +185,49 @@ write('spa-404.js', `'use strict';
 })();
 `);
 
-// 7. Version tags on the site's own scripts and styles, so after an update a browser never mixes
+// 7. Fewer, smaller files for the shop pages: each run of the site's own stylesheets becomes one
+//    minified file, and so does each run of its own scripts. Order is kept exactly, and every
+//    script is already in strict mode, so joining them changes nothing about how they run.
+//    The Studio is left exactly as it is.
+const esbuild = await import('esbuild');
+const bundles = {};
+async function bundle(list, ext) {
+  const key = ext + ':' + list.join('|');
+  if (bundles[key]) return bundles[key];
+  const src = list.map((rel) => fs.readFileSync(path.join(OUT, rel), 'utf8')).join(ext === 'js' ? '\n;\n' : '\n');
+  const out = (await esbuild.transform(src, { loader: ext, minify: true, legalComments: 'none', target: ext === 'js' ? 'es2019' : 'chrome80' })).code;
+  const name = 'b/' + crypto.createHash('sha1').update(out).digest('hex').slice(0, 12) + '.' + ext;
+  write(name, out);
+  return (bundles[key] = name);
+}
+const CSS_RUN = /(?:<link rel='stylesheet' href='\/[a-z0-9-]+\.css'>\n?){2,}/g;
+const JS_RUN = /(?:<script src='\/[a-z0-9-]+\.js'><\/script>\n?){2,}/g;
+let joined = 0;
+async function replaceAsync(str, re, fn) {
+  const parts = []; let last = 0;
+  for (const m of str.matchAll(re)) { parts.push(str.slice(last, m.index), await fn(m[0])); last = m.index + m[0].length; }
+  return parts.join('') + str.slice(last);
+}
+for (const rel of (function list(dir, base) {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => e.isDirectory()
+    ? (e.name === 'img' || e.name.startsWith('atelier-') ? [] : list(path.join(dir, e.name), base + e.name + '/'))
+    : e.name.endsWith('.html') ? [base + e.name] : []);
+})(OUT, '')) {
+  const f = path.join(OUT, rel);
+  let t = fs.readFileSync(f, 'utf8');
+  t = await replaceAsync(t, CSS_RUN, async (run) => {
+    joined++;
+    return "<link rel='stylesheet' href='/" + await bundle([...run.matchAll(/href='\/([^']+)'/g)].map((m) => m[1]), 'css') + "'>\n";
+  });
+  t = await replaceAsync(t, JS_RUN, async (run) => {
+    joined++;
+    return "<script src='/" + await bundle([...run.matchAll(/src='\/([^']+)'/g)].map((m) => m[1]), 'js') + "'></script>\n";
+  });
+  fs.writeFileSync(f, t);
+}
+for (const [k, v] of Object.entries(bundles)) log(`joined ${k.split('|').length} files into ${v} (${Math.round(fs.statSync(path.join(OUT, v)).size / 1024)} KB)`);
+
+// 8. Version tags on the site's own scripts and styles, so after an update a browser never mixes
 //    new pages with old files it saved (GitHub lets browsers keep files for 10 minutes).
 //    The tag is the file's own fingerprint: it only changes when the file does.
 const tags = {};

@@ -5,8 +5,11 @@
   "scripts": {
     "build": "node scripts/build.mjs"
   },
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
+    "esbuild": "0.24.0",
     "sharp": "0.33.5"
   }
 }
