@@ -27,6 +27,13 @@ publish → Run workflow**.
   what it can read.
 - Customer details, orders and messages are never stored here.
 
+## Files that must stay
+
+- `site/google60e3f33f27129d8b.html` and `site/google5d0483d7394c7c2c.html` prove ownership of the
+  site to Google Search Console (one per Google account). Deleting either one removes that
+  account's access to the site's search data.
+- The `msvalidate.01` tag in `site/index.html` does the same for Bing Webmaster Tools.
+
 ## Building on your own computer
 
 ```
